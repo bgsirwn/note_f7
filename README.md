@@ -6,7 +6,7 @@ Voir [LICENSE.md](<LICENSE.md>) pour licences.
 Informations sur le projet
 --------------------------
 
-Ebauche d'application de type 'mémo'.
+Ebauche d'application mobile de type 'mémo'.
 
 Projet IntelXDK HTML5+Cordova
 Utilisation de [Framework7] (<http://framework7.io>) pour création de l'UI
