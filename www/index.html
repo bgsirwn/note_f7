@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blank Cordova Mobile App Project Template (Lite)</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    <!-- Framework7 CSS -->
+    <link rel="stylesheet" href="lib/css/framework7.material.min.css"/>
+    <link rel="stylesheet" href="lib/css/framework7.material.colors.min.css"/>
+    
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="css/app.css"/>
+    
+    <style>
+        /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+        /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+
+    <!-- Framework 7 -->
+    <script src="lib/js/framework7.min.js"></script>
+    
+    <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls, added during build -->
+    <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+</head>
+
+<body>
+    
+    <!-- views -->
+    <div class="views">
+        <!-- main view -->
+        <div class="view view-main">
+            <!-- pages container -->
+            <div class="pages navbar-fixed">
+                <!-- homePage -->
+                <div class="page" data-page="homePage">
+                    
+                    <!-- top navbar -->
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <p class="center">Note++</p>
+                        </div> 
+                    </div>
+                    
+                    <!-- page content -->
+                    <div class="page-content">
+                        
+
+                        <div class="list-block">
+                            <ul>
+                                <!-- input #noteTitle -->
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-input">
+                                                <input id="noteTitle" type="text" placeholder="Saisir un titre">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <!-- textarea #note -->
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                              <div class="item-input">
+                                                <textarea id="note" placeholder="Saisir une note"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <p><a href="#" class="button button-fill button-raised" id="addNoteBtn">Ajouter</a></p>
+                        
+                        <div class="list-block">
+                            <ul id="notesList">
+                                <!-- list item à afficher quand il n'y a aucune note mémorisée -->
+                                <li id="noNotes">
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                Vous n'avez pas de notes
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- modèle de list item à dupliquer -->
+                                <li class="template" style="display:none">
+                                    <a class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                coucou
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>       
+                    </div>
+                </div>
+                <!-- end of homePage -->
+                
+                
+                  <!-- detailsPage -->
+                <div class="page cached" data-page="detailsPage">
+                    
+                    <!-- top navbar -->
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <div class="left">
+                                <a href="#" class="link back">
+                                    <i class="icon icon-back"></i>
+                                </a>
+                            </div>
+                            <div class="center">Note++</div>
+                            <div class="right">
+                                <a href="#" class="link" id="deleteBtn">
+                                    <span>Effacer</span>
+                                </a>
+                            </div>
+                        </div> 
+                    </div>
+                    
+                    <!-- page content -->
+                    <div class="page-content">                        
+                        <div class="content-block">
+                            <h3 class="noteTitle"></h3>
+                            <p class="noteContent"></p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end of detailsPage -->              
+                
+            </div>
+            <!-- end of pages container -->
+        </div>
+        <!-- end of main view -->
+    </div>
+    <!-- end of views -->
+
+</body>
+</html>
