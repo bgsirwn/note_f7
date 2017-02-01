@@ -18,6 +18,18 @@ function onAppReady() {
         domCache: true 
     });
     
+    // Compilation des templates
+    // *************************
+    
+    // récupération d'un template Template7 (destiné au contenu de la page de détails)
+    var detailsTemplate = $$('#detailsTemplate').html();
+    // compilation du template
+    var compiledDetailsTemplate = Template7.compile(detailsTemplate);
+    
+    // récupération d'un template Template7 (destiné à la List View de la page d'accueil)
+    var listItemsTemplate = $$('#listItemsTemplate').html();
+    // compilation du template
+    var compiledListItemsTemplate = Template7.compile(listItemsTemplate);    
     
     // Application
     // ***********
@@ -77,6 +89,9 @@ function onAppReady() {
             // on utilise la technique classique en vanilla Javascript pour tester si un objet
             // est vide)
             if(! (Object.keys(objNotes).length === 0 && objNotes.constructor === Object)){
+                
+                var context = {notes: new Array()};
+                
                 // on parcours toutes les notes présentes dans l'objet JSON
                 // (rappel boucle Javascript for...in parcourt toutes les propriétés d'un objet)
                 for(n in objNotes){
@@ -85,6 +100,7 @@ function onAppReady() {
                     // nb: Dom7 ne propose pas la méthode clone() de jQuery
                     // (ici, on utilise la méthode cloneNode de Javascript qui permet de cloner
                     // un élément du DOM)
+                    /*
                     var newItem = $$('#notesList .template')[0].cloneNode(true);
                     // pour différencier un item 'normal' du template
                     $$(newItem).addClass('note').removeClass('template').show();
@@ -92,7 +108,16 @@ function onAppReady() {
                     $$('.item-title', newItem).text(n);
                     // on ajoute le nouvel élément à la List View
                     $$('#notesList').append(newItem);
-                };       
+                    */
+                    
+                    // on crée le contexte du template des éléments de la List View
+                    context.notes.push(n);
+                }; 
+                
+                // on obtient un code HTML en passant le contexte au template compilé
+                var html = compiledListItemsTemplate(context);
+                // on insère le HTML généré à l'endroit désiré
+                $$('#notesList').append(html);
 
                 // on cache l'élément 'Vous n'avez pas encore de note' 
                 $$('#noNotes').hide();
@@ -176,8 +201,22 @@ function onAppReady() {
                     var noteContent = objNotes[noteTitle];
                     
                     // on prépare le contenu de la page de détail
+                    /*
                     $$("[data-page='detailsPage'] .page-content .noteTitle").text(noteTitle);
                     $$("[data-page='detailsPage'] .page-content .noteContent").text(noteContent);
+                    */
+                    
+                    // on crée le contexte du template de la page de détails
+                    var context = {
+                        noteTitle: noteTitle,
+                        noteContent: noteContent
+                    };
+                    // on obtient un fragment HTML en passant le contexte au template compilé
+                    var html = compiledDetailsTemplate(context);
+                    // on insère ce HTML à l'endroit désiré
+                    $$('[data-page="detailsPage"] .page-content').html(html);
+                    
+                    
                     
                     // on attache une donnée sous la forme clé/valeur au bouton de suppression
                     $$("[data-page='detailsPage'] #deleteBtn").data('noteTitle', noteTitle);

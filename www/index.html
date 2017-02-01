@@ -40,6 +40,21 @@
                 <!-- homePage -->
                 <div class="page" data-page="homePage">
                     
+                    <!-- modèle de list item à dupliquer -->
+                    <script id="listItemsTemplate" type="text/template7">
+                        {{#each notes}}
+                        <li class="note">
+                            <a class="item-content item-link">
+                                <div class="item-inner">
+                                    <div class="item-title">
+                                        {{this}}
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </script>
+                    
                     <!-- top navbar -->
                     <div class="navbar">
                         <div class="navbar-inner">
@@ -91,16 +106,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <!-- modèle de list item à dupliquer -->
-                                <li class="template" style="display:none">
-                                    <a class="item-content item-link">
-                                        <div class="item-inner">
-                                            <div class="item-title">
-                                                coucou
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>       
                     </div>
@@ -110,6 +116,15 @@
                 
                   <!-- detailsPage -->
                 <div class="page cached" data-page="detailsPage">
+                    
+                    <!-- template (Template7)
+                         template pour le contenu de .page-content de la page de détails -->
+                    <script id="detailsTemplate" type="text/template7">
+                        <div class="content-block">
+                                <h3>{{noteTitle}}</h3>
+                                <p>{{noteContent}}</p>
+                        </div>
+                    </script>
                     
                     <!-- top navbar -->
                     <div class="navbar">
@@ -130,10 +145,7 @@
                     
                     <!-- page content -->
                     <div class="page-content">                        
-                        <div class="content-block">
-                            <h3 class="noteTitle"></h3>
-                            <p class="noteContent"></p>
-                        </div>
+
                     </div>
                     
                 </div>
